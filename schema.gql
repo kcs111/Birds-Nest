@@ -1,0 +1,38 @@
+"An application user"
+type User {
+  username: String!
+  email: String!
+  id: ID!
+}
+
+type Rating {
+  gameId: ID!
+  userId: ID!
+  value: ID!
+}
+
+type Game {
+  name: String!
+  id: ID!
+  genre: String!
+  description: String!
+  image: String!
+}
+
+type AuthResponse {
+  accessToken: String
+}
+
+# The overarching query type
+type Query {
+  currentUser: User
+}
+
+type Mutation {
+  # login/registration mutations
+  login(usernameOrEmail: String!, password: String!): AuthResponse
+  logout: AuthResponse
+  register(username: String!, email: String!, password: String!): AuthResponse
+  forgotPassword(usernameOrEmail: String!): AuthResponse
+  changePassword(oldPassword: String, newPassword: String!): AuthResponse
+}
